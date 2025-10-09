@@ -64,6 +64,11 @@ $router->get('/students', 'StudentsController::get_all');
 $router->get('/students/get-all', 'StudentsController::get_all');
 $router->get('/students/get-all/{page}', 'StudentsController::get_all');
 
+// Read-only user page (no edit/delete actions)
+$router->get('/user', 'StudentsController::user_page');
+$router->get('/user/get-all', 'StudentsController::user_page');
+$router->get('/user/get-all/{page}', 'StudentsController::user_page');
+
 // Create
 $router->get('/students/create', 'StudentsController::create');
 $router->post('/students/create', 'StudentsController::create');

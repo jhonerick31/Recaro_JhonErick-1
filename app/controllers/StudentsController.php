@@ -38,7 +38,7 @@ class StudentsController extends Controller
         ]);
     }
     /** GET ALL STUDENTS */
-    public function get_all($page = 1)
+    public function get_all($page = 1, $force_is_admin = null)
     {
         $per_page = isset($_GET['per_page']) ? (int) $_GET['per_page'] : 10;
         $allowed_per_page = [10, 25, 50, 100];
@@ -62,6 +62,8 @@ class StudentsController extends Controller
 
         $pagination_data = $this->pagination->initialize($total_rows, $per_page, $page, $base_url, 5);
 
+        $is_admin = is_null($force_is_admin) ? (bool) $this->session->userdata('is_admin') : (bool) $force_is_admin;
+
         $data = [
             'records'          => $records,
             'total_records'    => $total_rows,
@@ -72,10 +74,21 @@ class StudentsController extends Controller
             'search'           => $search,
             'show_deleted'     => $show_deleted,
             'upload_url'       => $this->upload_url,
-            'is_admin'         => (bool) $this->session->userdata('is_admin')
+            'is_admin'         => $is_admin
         ];
 
         $this->call->view('ui/get_all', $data);
+    }
+
+    /**
+     * Read-only listing for regular users. This will render the same
+     * students listing but force the view to treat the user as non-admin
+     * so edit/delete/restore links are hidden.
+     */
+    public function user_page($page = 1)
+    {
+        // Force is_admin = false in the view
+        $this->get_all($page, false);
     }
 
 /** CREATE STUDENT */

@@ -32,8 +32,15 @@ class AuthController extends Controller {
                         $this->session->set_userdata('logged_in', true);
                         $this->session->set_userdata('user_id', $user['id']);
                         // Simple admin rule: user with ID 1 is admin (adjust as needed)
-                        $this->session->set_userdata('is_admin', ((int)$user['id'] === 1));
-                        redirect('students/get-all');
+                        $isAdmin = ((int)$user['id'] === 1);
+                        $this->session->set_userdata('is_admin', $isAdmin);
+
+                        // Redirect admins to full management page, regular users to read-only user page
+                        if ($isAdmin) {
+                            redirect('students/get-all');
+                        } else {
+                            redirect('user/get-all');
+                        }
                         return;
                     } else {
                         $error = "Incorrect password.";
