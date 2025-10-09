@@ -3,27 +3,27 @@
 <head>
     <title>Edit Student</title>
     <style>
-        /* Luxury + modern theme */
+        /* Black + green theme */
         :root {
-            --bg-start: #0f172a;
-            --bg-end: #1f2937;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #6b7280;
-            --gold-500: #f59e0b;
-            --gold-600: #d97706;
-            --gold-700: #b45309;
-            --border: #e5e7eb;
-            --ring: rgba(245, 158, 11, 0.35);
-            --shadow: 0 10px 30px rgba(2, 6, 23, 0.25);
+            --bg-start: #000000;
+            --bg-end: #04201a;
+            --card-bg: #071917;
+            --text-main: #e6fff5;
+            --text-muted: #9fe2c9;
+            --gold-500: #10b981;
+            --gold-600: #059669;
+            --gold-700: #047857;
+            --border: #0a3a2f;
+            --ring: rgba(16,185,129,0.15);
+            --shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
         body {
             font-family: "Segoe UI", Roboto, Inter, Arial, sans-serif;
             margin: 0;
             min-height: 100vh;
             background:
-                radial-gradient(1200px 600px at 10% 10%, rgba(245, 158, 11, 0.08), transparent 40%),
-                radial-gradient(1200px 600px at 80% 20%, rgba(234, 179, 8, 0.06), transparent 45%),
+                radial-gradient(1200px 600px at 10% 10%, rgba(16,185,129,0.04), transparent 40%),
+                radial-gradient(1200px 600px at 80% 20%, rgba(5,150,105,0.03), transparent 45%),
                 linear-gradient(135deg, var(--bg-start), var(--bg-end));
             color: #111827;
             display: flex;
@@ -33,7 +33,7 @@
         }
         .card {
             background: var(--card-bg);
-            border: 1px solid var(--border);
+            border: 1px solid rgba(15,50,40,0.6);
             border-radius: 16px;
             box-shadow: var(--shadow);
             padding: 30px;
@@ -41,7 +41,7 @@
             max-width: 560px;
         }
         h2 {
-            color:#d97706 ;
+            color: var(--gold-600) ;
             margin: 0 0 16px 0;
             text-align: center;
             font-size: 26px;
@@ -59,10 +59,10 @@
         input[type="text"], input[type="email"], input[type="password"], input[type="file"] {
             padding: 12px 14px;
             width: 100%;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(15,50,40,0.4);
             border-radius: 12px;
             margin-bottom: 12px;
-            background: #ffffff;
+            background: #042a21;
             color: var(--text-main);
             outline: none;
             transition: border-color 180ms ease, box-shadow 180ms ease;
@@ -78,11 +78,11 @@
             background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
             border: none;
             border-radius: 12px;
-            color: #111827;
+            color: #041812;
             font-weight: 700;
             letter-spacing: 0.2px;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
             transition: transform 120ms ease, box-shadow 200ms ease, filter 200ms ease;
         }
         button:hover { filter: brightness(0.98); box-shadow: 0 10px 24px rgba(245, 158, 11, 0.45); transform: translateY(-1px); }
