@@ -31,6 +31,8 @@ class AuthController extends Controller {
                     if ($user['password'] === $password) { // TIP: gawing password_hash() later
                         $this->session->set_userdata('logged_in', true);
                         $this->session->set_userdata('user_id', $user['id']);
+                        // Simple admin rule: user with ID 1 is admin (adjust as needed)
+                        $this->session->set_userdata('is_admin', ((int)$user['id'] === 1));
                         redirect('students/get-all');
                         return;
                     } else {
@@ -86,6 +88,7 @@ class AuthController extends Controller {
     {
         $this->session->unset_userdata('logged_in');
         $this->session->unset_userdata('user_id');
+        $this->session->unset_userdata('is_admin');
         redirect('auth/login');
     }
 }

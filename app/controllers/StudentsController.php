@@ -71,7 +71,8 @@ class StudentsController extends Controller
             'pagination_links' => $this->pagination->paginate(),
             'search'           => $search,
             'show_deleted'     => $show_deleted,
-            'upload_url'       => $this->upload_url
+            'upload_url'       => $this->upload_url,
+            'is_admin'         => (bool) $this->session->userdata('is_admin')
         ];
 
         $this->call->view('ui/get_all', $data);
@@ -138,6 +139,10 @@ public function create()
     /** UPDATE STUDENT */
     public function update($id)
     {
+        if (!$this->session->userdata('is_admin')) {
+            show_error('Forbidden: Admins only', 403);
+            return;
+        }
         $this->call->library('form_validation');
         $contents = $this->StudentsModel->find($id);
 
@@ -185,6 +190,10 @@ public function create()
     /** SOFT DELETE */
     public function delete($id)
     {
+        if (!$this->session->userdata('is_admin')) {
+            show_error('Forbidden: Admins only', 403);
+            return;
+        }
         $this->StudentsModel->soft_delete($id);
         redirect('students/get-all');
     }
@@ -192,6 +201,10 @@ public function create()
     /** HARD DELETE */
     public function hard_delete($id)
     {
+        if (!$this->session->userdata('is_admin')) {
+            show_error('Forbidden: Admins only', 403);
+            return;
+        }
         $this->StudentsModel->hard_delete($id);
         redirect('students/get-all?show=deleted');
     }
@@ -199,6 +212,10 @@ public function create()
     /** RESTORE */
     public function restore($id)
     {
+        if (!$this->session->userdata('is_admin')) {
+            show_error('Forbidden: Admins only', 403);
+            return;
+        }
         $this->StudentsModel->restore($id);
         redirect('students/get-all?show=deleted');
     }
